@@ -1,44 +1,37 @@
 let working = true;
 let started = false;
-let resetBo = false;
+let reset = false;
 let promoMinute = 25;
 let promoSec = 0;
 let shortMinute = 5;
 let shortSec = 0;
 let longMinute = 30;
 let longSec = 0;
-let sec = promoSec;
+let shortRound = 0;
 let minute = promoMinute;
-let shortRound = 1;
-document.querySelector("#short-break-minute").innerHTML = "0" + shortMinute;
-document.querySelector("#long-break-minute").innerHTML = longMinute;
-document.querySelector("#promo-minute").innerHTML = promoMinute;
-document.querySelector("#main-minute").innerHTML = promoMinute;
-
+let sec = promoSec;
+document.querySelector("#main-minute").innerHTML = minute;
 //Fő gombok eseményei
 let startBtn = document.querySelector("#start");
-startBtn.addEventListener("mousedown", start);
+startBtn.addEventListener("mousedown", startPromodoro);
 
 let resetBtn = document.querySelector("#reset");
-resetBtn.addEventListener("mousedown", reset);
+resetBtn.addEventListener("mousedown", resetPromodoro);
 
-function reset() {
-    resetBo = true;
+function resetPromodoro() {
+    reset = true;
     minute = promoMinute;
     sec = promoSec;
     print(minute, sec);
-    document.querySelector("#main-minute").innerHTML = minute;
+    shortRound = 0;
 }
 
-function start() {
+function startPromodoro() {
     started = true;
-    resetBo = false;
+    reset = false;
     print(minute, sec);
 }
 
-window.setInterval(work, 1000);
-window.setInterval(shortBreak, 1000);
-window.setInterval(longBreak, 1000);
 
 
 
@@ -89,7 +82,7 @@ function shortMinusMinute() {
     }
 }
 
-//Long Brakes
+//Long Breaks
 let longPlusBtn = document.querySelector("#long-plus");
 longPlusBtn.addEventListener("mousedown", longPlusMinute);
 
@@ -109,62 +102,51 @@ function longMinusMinute() {
 }
 
 //A promodoro, és a szünetek metódusai
-function work() {
-    if (working && !resetBo && started) {
+window.setInterval(turn, 1);
+
+function turn() {
+    if (started && !reset) {
         sec--;
-        if (sec === -1 && minute === 0) {
-            working = false;
-            print(shortMinute, shortSec);
-            return;
-        }
         if (sec === -1 && minute !== 0) {
+            sec = 59;
             minute--;
         }
-        if (sec === -1) {
-            sec = 59;
+        if (minute === 0 && sec === -1) {
+            if (working) {
+                if (shortRound < 3) {
+                    shortBreak();
+                    shortRound++;
+                } else {
+                    longBreak();
+                    window.clearInterval(turn);
+                    shortRound = 0;
+                }
+                working = false;
+            } else {
+                work();
+                working = true;
+            }
         }
+        console.log(sec);
         print(minute, sec);
     }
 }
 
-function stopWork() {
-    clearInterval(work);
+function work() {
+    minute = promoMinute;
+    sec = promoSec;
 }
 
 function shortBreak() {
-
-    if (!working && !resetBo && shortRound < 4) {
-        shortSec--;
-        if (shortSec === -1) {
-            shortSec = 59;
-            shortMinute--;
-        }
-        if (shortMinute === 0 && shortSec === 0) {
-            working = true;
-            sec = promoSec;
-            minute = promoMinute;
-        }
-        print(shortMinute, shortSec);
-    }
+    minute = shortMinute;
+    sec = shortSec;
 }
+
 
 function longBreak() {
-
-    if (!working && !resetBo && shortRound > 3) {
-        longSec--;
-        if (longSec === -1) {
-            longSec = 59;
-            longMinute--;
-        }
-        if (longMinute === 0 && longSec == -1) {
-            working = true;
-            sec = promoSec;
-            minute = promoMinute;
-        }
-        print(longMinute, longSec);
-    }
+    minute = longMinute;
+    sec = longSec;
 }
-
 
 function print(minute, sec) {
     if (sec < 10) {
