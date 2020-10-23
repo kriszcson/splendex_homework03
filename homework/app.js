@@ -1,15 +1,17 @@
 let working = true;
 let started = false;
 let reset = false;
+let set = true;
 let promoMinute = 25;
 let promoSec = 0;
 let shortMinute = 5;
 let shortSec = 0;
-let longMinute = 30;
+let longMinute = 25;
 let longSec = 0;
 let shortRound = 0;
 let minute = promoMinute;
 let sec = promoSec;
+let promoRound = 1;
 let audio = new Audio("beep-04.wav");
 document.querySelector("#main-minute").innerHTML = minute;
 //Fő gombok eseményei
@@ -21,6 +23,7 @@ resetBtn.addEventListener("mousedown", resetPromodoro);
 
 function resetPromodoro() {
     reset = true;
+    set = true;
     minute = promoMinute;
     sec = promoSec;
     print(minute, sec);
@@ -28,8 +31,13 @@ function resetPromodoro() {
 }
 
 function startPromodoro() {
-    started = true;
+    if (started) {
+        started = false;
+    } else {
+        started = true;
+    }
     reset = false;
+    set = false;
     print(minute, sec);
 }
 
@@ -44,12 +52,14 @@ promoPlusBtn.addEventListener("mousedown", promoPlusMinute);
 promoMinusBtn.addEventListener("mousedown", promoMinusMinute);
 
 function promoPlusMinute() {
-    promoMinute++;
-    document.querySelector("#promo-minute").innerHTML = promoMinute;
+    if (set) {
+        promoMinute++;
+        document.querySelector("#promo-minute").innerHTML = promoMinute;
+    }
 }
 
 function promoMinusMinute() {
-    if (promoMinute > 1) {
+    if (promoMinute > 1 && set) {
         promoMinute--;
         document.querySelector("#promo-minute").innerHTML = promoMinute;
     }
@@ -64,16 +74,18 @@ shortMinusBtn.addEventListener("mousedown", shortMinusMinute);
 
 
 function shortPlusMinute() {
-    shortMinute++;
-    if (shortMinute > 9) {
-        document.querySelector("#short-break-minute").innerHTML = shortMinute;
-    } else {
-        document.querySelector("#short-break-minute").innerHTML = "0" + shortMinute;
+    if (set) {
+        shortMinute++;
+        if (shortMinute > 9) {
+            document.querySelector("#short-break-minute").innerHTML = shortMinute;
+        } else {
+            document.querySelector("#short-break-minute").innerHTML = "0" + shortMinute;
+        }
     }
 }
 
 function shortMinusMinute() {
-    if (shortMinute > 1) {
+    if (shortMinute > 1 && set) {
         shortMinute--;
     }
     if (shortMinute > 9) {
@@ -91,12 +103,14 @@ let longMinusBtn = document.querySelector("#long-minus");
 longMinusBtn.addEventListener("mousedown", longMinusMinute);
 
 function longPlusMinute() {
-    longMinute++;
-    document.querySelector("#long-break-minute").innerHTML = longMinute;
+    if (set) {
+        longMinute++;
+        document.querySelector("#long-break-minute").innerHTML = longMinute;
+    }
 }
 
 function longMinusMinute() {
-    if (longMinute > 15) {
+    if (longMinute > 15 && set) {
         longMinute--;
         document.querySelector("#long-break-minute").innerHTML = longMinute;
     }
@@ -134,19 +148,24 @@ function turn() {
 }
 
 function work() {
+    promoRound++;
     minute = promoMinute;
     sec = promoSec;
+    document.querySelector("#promodoro").innerHTML = "Promodoro" + promoRound;
+
 }
 
 function shortBreak() {
     minute = shortMinute;
     sec = shortSec;
+    document.querySelector("#promodoro").innerHTML = "Short Break";
 }
 
 
 function longBreak() {
     minute = longMinute;
     sec = longSec;
+    document.querySelector("#promodoro").innerHTML = "Long Break";
 }
 
 function print(minute, sec) {
