@@ -10,6 +10,7 @@ let longSec = 0;
 let shortRound = 0;
 let minute = promoMinute;
 let sec = promoSec;
+let audio = new Audio("beep-04.wav");
 document.querySelector("#main-minute").innerHTML = minute;
 //Fő gombok eseményei
 let startBtn = document.querySelector("#start");
@@ -48,7 +49,7 @@ function promoPlusMinute() {
 }
 
 function promoMinusMinute() {
-    if (promoMinute > 10) {
+    if (promoMinute > 1) {
         promoMinute--;
         document.querySelector("#promo-minute").innerHTML = promoMinute;
     }
@@ -102,7 +103,7 @@ function longMinusMinute() {
 }
 
 //A promodoro, és a szünetek metódusai
-window.setInterval(turn, 1);
+window.setInterval(turn, 1000);
 
 function turn() {
     if (started && !reset) {
@@ -112,6 +113,7 @@ function turn() {
             minute--;
         }
         if (minute === 0 && sec === -1) {
+            audio.play();
             if (working) {
                 if (shortRound < 3) {
                     shortBreak();
@@ -127,7 +129,6 @@ function turn() {
                 working = true;
             }
         }
-        console.log(sec);
         print(minute, sec);
     }
 }
