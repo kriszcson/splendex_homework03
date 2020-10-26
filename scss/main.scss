@@ -1,0 +1,124 @@
+        $primary-color:#272727;
+        $secondary-color:#323f37;
+        $primary-background-color:rgb(57, 57, 71);
+        $primary-color:#272727;
+        $secondary-background-color:#e7d2a4;
+        $primary-green-color:#2d9c46;
+        $secondary-green-color:rgb(90, 211, 59);
+        $primary-red-color:rgb(207, 84, 68);
+        $secondary-red-color: red;
+        $font-sizes: ( "small": 2.2rem, "medium":2.7rem, "large":5rem, "xlarge": 7.5rem);
+        body {
+            width: 90%;
+            text-align: center;
+            justify-content: center;
+            font-size: map-get($font-sizes, small);
+            margin: 0 auto;
+            background-color: $primary-background-color;
+            color: black;
+            font-weight: 500;
+        }
+        
+        .timer {
+            margin-top: 5px;
+            font-size: map-get($font-sizes, xlarge);
+            width: 400px;
+            height: 400px;
+            padding: 10px;
+            border: 9px #272727 solid;
+            border-radius: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: $secondary-background-color;
+            #main-sec,
+            #main-separator {
+                font-weight: 500;
+            }
+            .promodoro {
+                font-size: 60px;
+                font-weight: 800;
+            }
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            margin-left: 80px;
+            margin-right: 80px;
+            margin-top: 10px;
+            margin-bottom: 50px;
+            padding: 6px 50px;
+            border: 5px solid $primary-color;
+            border-radius: 10%;
+            font-size: map-get($font-sizes, medium);
+            font-family: 'Anton', sans-serif;
+        }
+        
+        #start {
+            background-color: $primary-green-color;
+        }
+        
+        #start:active {
+            background-color: $secondary-green-color;
+            outline: none;
+        }
+        
+        #reset {
+            background-color: $primary-red-color;
+        }
+        
+        #reset:active {
+            background-color: $secondary-red-color;
+            outline: none;
+        }
+        
+        #start,
+        #reset {
+            outline: none;
+        }
+        
+        .setters {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Anton', sans-serif;
+            display: inline-block;
+            background-color: $secondary-background-color;
+            padding: 5px 60px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 20px;
+            border: 6px solid rgb(32, 33, 41);
+            border-radius: 10%;
+            .setter-plus {
+                background: $primary-green-color;
+            }
+            .setter-plus:active {
+                background: $secondary-green-color;
+            }
+            .setter-minus {
+                background: $primary-red-color;
+            }
+            .setter-minus:active {
+                background: $secondary-red-color;
+            }
+            .setter-plus:focus,
+            .setter-minus:focus {
+                outline: none;
+            }
+            .setters:hover {
+                background-color: #f8f4f4;
+            }
+            .setter-plus,
+            .setter-minus {
+                border-radius: 20%;
+                border: none;
+                padding-top: 8px;
+                padding-right: 30px;
+                padding-left: 30px;
+            }
+        }
+        
+        #arc1 {
+            color: red;
+        }
