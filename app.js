@@ -13,13 +13,13 @@ let minute = promoMinute;
 let sec = promoSec;
 let promoRound = 1;
 let audio = new Audio("beep-04.wav");
-document.querySelector("#main-minute").innerHTML = minute;
+document.querySelector(".main-minute").innerHTML = minute;
 let timeRound = (minute * 60 + sec) / (promoMinute * 60 + promoSec) * 100;
 //Fő gombok eseményei
-let startBtn = document.querySelector("#start");
+let startBtn = document.querySelector(".start");
 startBtn.addEventListener("mousedown", startPromodoro);
 
-let resetBtn = document.querySelector("#reset");
+let resetBtn = document.querySelector(".reset");
 resetBtn.addEventListener("mousedown", resetPromodoro);
 
 function resetPromodoro() {
@@ -44,30 +44,30 @@ function startPromodoro() {
 }
 //Mellék gombok eseményei
 //Promodoro
-let promoPlusBtn = document.querySelector("#promo-plus");
-let promoMinusBtn = document.querySelector("#promo-minus");
+let promoPlusBtn = document.querySelector(".promo-plus");
+let promoMinusBtn = document.querySelector(".promo-minus");
 promoPlusBtn.addEventListener("mousedown", promoPlusMinute);
 promoMinusBtn.addEventListener("mousedown", promoMinusMinute);
 
 function promoPlusMinute() {
     if (set) {
         promoMinute++;
-        document.querySelector("#promo-minute").innerHTML = promoMinute;
+        document.querySelector(".promo-minute").innerHTML = promoMinute;
     }
 }
 
 function promoMinusMinute() {
     if (promoMinute > 1 && set) {
         promoMinute--;
-        document.querySelector("#promo-minute").innerHTML = promoMinute;
+        document.querySelector(".promo-minute").innerHTML = promoMinute;
     }
 }
 
 //Short Breaks
-let shortPlusBtn = document.querySelector("#short-plus");
+let shortPlusBtn = document.querySelector(".short-plus");
 shortPlusBtn.addEventListener("mousedown", shortPlusMinute);
 
-let shortMinusBtn = document.querySelector("#short-minus");
+let shortMinusBtn = document.querySelector(".short-minus");
 shortMinusBtn.addEventListener("mousedown", shortMinusMinute);
 
 
@@ -75,9 +75,9 @@ function shortPlusMinute() {
     if (set) {
         shortMinute++;
         if (shortMinute > 9) {
-            document.querySelector("#short-break-minute").innerHTML = shortMinute;
+            document.querySelector(".short-break-minute").innerHTML = shortMinute;
         } else {
-            document.querySelector("#short-break-minute").innerHTML = "0" + shortMinute;
+            document.querySelector(".short-break-minute").innerHTML = "0" + shortMinute;
         }
     }
 }
@@ -87,30 +87,30 @@ function shortMinusMinute() {
         shortMinute--;
     }
     if (shortMinute > 9) {
-        document.querySelector("#short-break-minute").innerHTML = shortMinute;
+        document.querySelector(".short-break-minute").innerHTML = shortMinute;
     } else {
-        document.querySelector("#short-break-minute").innerHTML = "0" + shortMinute;
+        document.querySelector(".short-break-minute").innerHTML = "0" + shortMinute;
     }
 }
 
 //Long Breaks
-let longPlusBtn = document.querySelector("#long-plus");
+let longPlusBtn = document.querySelector(".long-plus");
 longPlusBtn.addEventListener("mousedown", longPlusMinute);
 
-let longMinusBtn = document.querySelector("#long-minus");
+let longMinusBtn = document.querySelector(".long-minus");
 longMinusBtn.addEventListener("mousedown", longMinusMinute);
 
 function longPlusMinute() {
     if (set) {
         longMinute++;
-        document.querySelector("#long-break-minute").innerHTML = longMinute;
+        document.querySelector(".long-break-minute").innerHTML = longMinute;
     }
 }
 
 function longMinusMinute() {
     if (longMinute > 15 && set) {
         longMinute--;
-        document.querySelector("#long-break-minute").innerHTML = longMinute;
+        document.querySelector(".long-break-minute").innerHTML = longMinute;
     }
 }
 
@@ -169,13 +169,13 @@ function longBreak() {
 
 function print(minute, sec) {
     if (sec < 10) {
-        document.getElementById("main-sec").innerHTML = "0" + sec;
+        document.querySelector(".main-sec").innerHTML = "0" + sec;
     } else {
-        document.getElementById("main-sec").innerHTML = sec;
+        document.querySelector(".main-sec").innerHTML = sec;
     }
     if (minute < 10) {
-        document.getElementById("main-minute").innerHTML = "0" + minute;
+        document.querySelector(".main-minute").innerHTML = "0" + minute;
     } else {
-        document.getElementById("main-minute").innerHTML = minute;
+        document.querySelector(".main-minute").innerHTML = minute;
     }
 }

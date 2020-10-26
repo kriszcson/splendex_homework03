@@ -24,8 +24,8 @@ body {
   background-color: #e7d2a4;
 }
 
-.timer #main-sec,
-.timer #main-separator {
+.timer .main-sec,
+.timer .main-separator {
   font-weight: 500;
 }
 
@@ -54,26 +54,21 @@ body {
   font-family: 'Anton', sans-serif;
 }
 
-#start {
+.start {
   background-color: #2d9c46;
 }
 
-#start:active {
+.start .start:active {
   background-color: #5ad33b;
   outline: none;
 }
 
-#reset {
+.reset {
   background-color: #cf5444;
 }
 
-#reset:active {
+.reset .reset:active {
   background-color: red;
-  outline: none;
-}
-
-#start,
-#reset {
   outline: none;
 }
 
