@@ -1,5 +1,5 @@
 body {
-  width: 90%;
+  width: 60%;
   text-align: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -128,9 +128,5 @@ body {
   padding-top: 8px;
   padding-right: 30px;
   padding-left: 30px;
-}
-
-#arc1 {
-  color: red;
 }
 /*# sourceMappingURL=main.css.map */

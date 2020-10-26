@@ -115,7 +115,7 @@ function longMinusMinute() {
 }
 
 //A promodoro, és a szünetek metódusai
-window.setInterval(turn, 1);
+window.setInterval(turn, 1000);
 
 function turn() {
     if (started && !reset) {

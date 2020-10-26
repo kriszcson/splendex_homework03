@@ -9,7 +9,7 @@
         $secondary-red-color: red;
         $font-sizes: ( "small": 2.2rem, "medium":2.7rem, "large":5rem, "xlarge": 7.5rem);
         body {
-            width: 90%;
+            width: 60%;
             text-align: center;
             justify-content: center;
             font-size: map-get($font-sizes, small);
@@ -117,8 +117,4 @@
                 padding-right: 30px;
                 padding-left: 30px;
             }
-        }
-        
-        #arc1 {
-            color: red;
         }
